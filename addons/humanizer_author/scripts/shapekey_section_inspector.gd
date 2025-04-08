@@ -44,27 +44,8 @@ func _ready() -> void:
 func _on_value_changed(changed: bool, slider: HSlider) -> void:
 	var key = slider.name
 	var value = slider.value
-	if name == 'RaceContainer':
-		# Do some normalization so race shapekeys always sum to 1
-		var sliders := {}
-		for sk in shapekeys:
-			sliders[sk] = get_node('%' + sk) as HSlider
-		# Get sum of other races
-		var other_total: float = 0
-		for sk in sliders:
-			if sk != key:
-				other_total += sliders[sk].value
-		# Set new values on other races in same ratio, but everything sums to 1
-		for sk in sliders:
-			if sk != key:
-				sliders[sk].value *= (1 - value) / other_total
-		# Send all results back to human
-		var values := {}
-		for sk in sliders:
-			values[sk] = sliders[sk].value
-		human.set_shapekeys(values)
-	else:
-		human.set_shapekeys({key: float(value)})
+	human.set_shapekeys.bind({key: float(value)})
+	
 	
 func _on_reset_sliders(human: HumanizerEditorTool) -> void:
 	var values := {}

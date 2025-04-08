@@ -12,7 +12,7 @@ var human : HumanizerEditorTool:
 		set_options()
 
 func set_options():
-	for path in HumanizerGlobalConfig.config.asset_import_paths:
+	for path in ProjectSettings.get_setting_with_override(\"addons/humanizer/asset_import_paths\"):
 		for fl in OSPath.get_files(path.path_join('presets')):
 			add_item(fl.get_file().get_basename())
 			set_item_metadata(item_count - 1, fl)
@@ -87,6 +87,7 @@ size_flags_horizontal = 3
 selected = 0
 item_count = 1
 popup/item_0/text = "Select to Load"
+popup/item_0/id = 0
 script = SubResource("GDScript_s6oci")
 
 [node name="HSeparator" type="HSeparator" parent="VBoxContainer"]
