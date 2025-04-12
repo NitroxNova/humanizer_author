@@ -44,7 +44,7 @@ func _ready() -> void:
 func _on_value_changed(changed: bool, slider: HSlider) -> void:
 	var key = slider.name
 	var value = slider.value
-	human.set_shapekeys.bind({key: float(value)})
+	human.set_shapekeys({key: float(value)})
 	
 	
 func _on_reset_sliders(human: HumanizerEditorTool) -> void:
