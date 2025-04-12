@@ -45,7 +45,11 @@ func _on_value_changed(changed: bool, slider: HSlider) -> void:
 	var key = slider.name
 	var value = slider.value
 	human.set_shapekeys({key: float(value)})
-	
+	#set sliders to normalized values
+	if name == "RaceContainer":
+		for race in HumanizerMacroService.race_options:
+			var temp_slider :HSlider = get_node('%' + race)
+			temp_slider.set_value_no_signal(human.human_config.targets[race])
 	
 func _on_reset_sliders(human: HumanizerEditorTool) -> void:
 	var values := {}
