@@ -56,7 +56,7 @@ var morph_data := {}
 ## Texture atlas resolution for the baked character
 @export_enum("1k:1024", "2k:2048", "4k:4096") var atlas_resolution: int = ProjectSettings.get_setting_with_override("addons/humanizer/atlas_resolution") 
 ## The scene to be added as an animator for the character
-@export var _animator_scene: PackedScene = ProjectSettings.get_setting_with_override("addons/humanizer/default_animation_tree")
+@export var _animator_scene: PackedScene = load(ProjectSettings.get_setting_with_override("addons/humanizer/default_animation_tree"))
 ## THe rendering layers for the human's 3d mesh instances
 @export_flags_3d_render var _render_layers = ProjectSettings.get_setting_with_override("addons/humanizer/default_character_render_layers"):
 	set(value):
