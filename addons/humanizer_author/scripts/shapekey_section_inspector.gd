@@ -29,7 +29,7 @@ func _ready() -> void:
 		slider.value = 0
 		if human.human_config != null :
 			if name.begins_with('Macro') or name.begins_with('Race') or key in ['cupsize', 'firmness']:
-				slider.value = human.human_config.targets[key]
+				slider.value = human.human_config.targets.macro[key]
 			elif human.human_config.targets.has(key):
 				slider.value = human.human_config.targets[key]
 
@@ -49,7 +49,7 @@ func _on_value_changed(changed: bool, slider: HSlider) -> void:
 	if name == "RaceContainer":
 		for race in HumanizerMacroService.race_options:
 			var temp_slider :HSlider = get_node('%' + race)
-			temp_slider.set_value_no_signal(human.human_config.targets[race])
+			temp_slider.set_value_no_signal(human.human_config.targets.macro[race])
 	
 func _on_reset_sliders(human: HumanizerEditorTool) -> void:
 	var values := {}
