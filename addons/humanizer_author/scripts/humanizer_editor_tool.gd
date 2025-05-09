@@ -551,8 +551,8 @@ func add_overlay(slot:String,overlay_id:String):
 		return
 	var equip:HumanizerEquipment = human_config.get_equipment_in_slot(slot)
 	var overlay = HumanizerResourceService.load_resource(equip.get_type().overlays[overlay_id]) 
-	overlay = overlay.duplicate()
-	equip.material_config.add_overlay(overlay)
+	overlay = overlay.duplicate(true)
+	equip.material_config.add_overlay_group(overlay)
 
 func remove_overlay(slot:String,overlay_id:String):
 	if baked:
