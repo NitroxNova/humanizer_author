@@ -46,9 +46,6 @@ func _ready() -> void:
 func _set_rig_options() -> void:
 	var rigs = HumanizerRegistry.rigs
 	for rig in rigs:
-		if rigs[rig].skeleton_retargeted_path != '':
-			add_item(rig + '-RETARGETED')
-		if rigs[rig].skeleton_path != '':
 			add_item(rig)
 			
 func _on_rig_selected(idx: int) -> void:
