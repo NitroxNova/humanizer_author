@@ -585,6 +585,10 @@ func init_rig() -> void:
 	_add_child_node(skeleton)
 	_reset_animator()
 	
+	for bone_id in skeleton.get_bone_count():
+		var bone_name = skeleton.get_bone_name(bone_id)
+		print(str(bone_id) + " : " + str(bone_name))
+	
 	if human_config.components.has(&'ragdoll'):
 		set_component_state(true, &'ragdoll')
 	if human_config.components.has(&'saccades'):
