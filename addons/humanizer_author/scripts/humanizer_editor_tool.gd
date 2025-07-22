@@ -585,10 +585,6 @@ func init_rig() -> void:
 	_add_child_node(skeleton)
 	_reset_animator()
 	
-	for bone_id in skeleton.get_bone_count():
-		var bone_name = skeleton.get_bone_name(bone_id)
-		print(str(bone_id) + " : " + str(bone_name))
-	
 	if human_config.components.has(&'ragdoll'):
 		set_component_state(true, &'ragdoll')
 	if human_config.components.has(&'saccades'):
@@ -624,7 +620,7 @@ func update_skeleton_skins():
 	for child in get_children():
 		if child is MeshInstance3D:
 			child.skin = skeleton.create_skin_from_rest_transforms()
-
+	
 func update_bone_weights():
 	for equip in human_config.equipment.values():
 		_add_bone_weights(equip)	
@@ -726,12 +722,17 @@ func _add_saccades() -> void:
 	
 func rebuild_skeleton():
 	##TODO figure out why this only works when adding bones and not for removing. something about bone count on the skin
-	humanizer.rebuild_skeleton(skeleton)
-	skeleton.reset_bone_poses()
-	reskin_skeleton_meshes()
+	#humanizer.rebuild_skeleton(skeleton)
+	#skeleton.reset_bone_poses()
+	#update_skeleton_skins()
 	
-func reskin_skeleton_meshes():
+	 #Delete existing skeleton
 	for child in get_children():
-		if child is MeshInstance3D:
-			child.skin = skeleton.create_skin_from_rest_transforms()
+		if child is Skeleton3D:
+			_delete_child_node(child)
+			
+	init_rig()
+	update_bone_weights()
+	update_skeleton_skins()
+	
 	
